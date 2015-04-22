@@ -88,5 +88,56 @@ Stall regions can still be modeled and assigned a value of \(\phi\), by obtainin
 
 Tip vortices from the lens of the deflection model is a transfer of momentum to the wing due to the turning of the momentum vector in the spanwise direction, rather than the pitchwise direction we have discussed so far. As is obvious (hopefully) from the description of the deflection model, spanwise deflection significantly contributes to the drag component, and does not affect the lift component.
 
+<h1>Application: Blade Element Momentum Deflection Theory</h1>
+<h3>Impetus</h3>
+<p>Here I detail a blade element momentum theory (BEMT) variant that utilizes the deflection model and the Euler pump equation. It can be called the blade element momentum deflection theory (BEMDT).</p>
+<p>The point of this model is to be a rotor performance prediction model that obeys physics, specifically the conservation of momentum and energy. That is, for any values of \(\phi\), the results should not violate actuator disk momentum theory. Put another way, the Figure of Merit of any results should never exceed 1. I am not saying this model will do so (that remains to be seen), but that is the goal.</p>
+<h3>Qualitative Description</h3>
+<p>The blade element 'sees' a freestream that is made up of the rotor speed and an inflow. This inflow is not the same as typically used in BEMT analysis, in that it is not at the location of the rotor disk. Here, it is some distance upstream, and has the speed that the blade sees when acting as a deflector. To explain this idea, imagine an airfoil in freestream. Speed increases to much greater values near the front, over the top, and aft of the airfoil than that of the freesream, but the speed that the wing sees as a deflector is the freestream speed. The deflection the wing element contributes to the velocity further downstream of the disk, where the velocity is higher and a swirl component exists. This swirl component is used in the Euler pump equation.</p>
+
+<h3>Symbols</h3>
+<h4>Vectors</h4>
+<ul>
+<li>\(P\): the oncoming momentum vector local to the blade element, comprising of the sum of the inflow and the rotor spin velocity.</li>
+<li>\(P'\): the rotated momentum vector local and due to the blade element.</li>
+</ul>
+<h4>Angles</h4>
+<ul>
+<li>\(\delta\): the angle between the horizontal (direction of rotor spin velocity) and \(P\).</li>
+<li>\(\psi\): the deflection angle by the blade in the blade-local frame. The angle between \(P\) and \(P'\).</li>
+<li>\(\phi\): the angle between the horizontal and \(P'\) (the resultant mean freestream direction).</li>
+</ul>
+<h4>Velocity Components</h4>
+<ul>
+<li>\(\lambda_1\): the inflow velocity component, normal to rotor disk.</li>
+<li>\(\lambda_2\): the outflow velocity component, normal to rotor disk.</li>
+<li>\(c_1\): the inflow velocity component, as seen by the blade as a deflector.</li>
+<li>\(c_2\): the outflow velocity component, as seen by the blade as a deflector.</li>
+<li>\(c_{2\theta}\): the outflow velocity swirl component, as seen by the blade as a deflector.</li>
+</ul>
+<h4>Parameters</h4>
+<ul>
+<li>\(\omega\): the rotational speed.</li>
+<li>\(r\): the radial location of the blade element.</li>
+<li>\(\beta\): the geometrical angle of attack of the blade element (the angle between the chord line and the horizontal).</li>
+</ul>
+<h3>Algorithm</h3>
+<p>
+From experimental data, we can obtain a mapping (as described before) from \(\beta\) to \(\phi\), such that \(\phi = M(\beta)\).
+</p>
+<p>
+Invoking the Euler Pump Equation [1]:
+\[\left( p_2 + \rho \left( c_2^2 \over 2 \right) \right) - \left( p_1 + \rho \left( c_1^2 \over 2 \right) \right) = \rho \omega r c_{2\theta}\]
+\[ { \Delta p \over \rho } = \omega r c_{2\theta} - {{\Delta c^2 } \over 2} \]
+\[\Delta p = p_2 - p_1, \Delta c^2 = c_2^2 - c_1^2\]
+</p>
+<br />
+<br />
+
+
+
 <!--Let's look at the data for NACA0012 found on the NASA Turbulence Modeling Resource website: http://turbmodels.larc.nasa.gov/naca0012_val.html.-->
+<br />
+<h2>References</h2>
+[1] Akturk A, Camci C. Experimental and Computational Assessment of a Ducted-Fan Rotor Flow Model. Journal Of Aircraft [serial online]. May 2012;49(3):885-897. Available from: Science and Technology Collection, Ipswich, MA. Accessed March 19, 2015.
 </div>
