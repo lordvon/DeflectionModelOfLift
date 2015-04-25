@@ -194,8 +194,21 @@ The inflow angle:
 \[ T_{ring}' = { T_{ring} \over {-sin(\delta)\over \left({L \over D}\right)_{ring}} +cos(\delta)} \]
 \[ D_{ring} = T_{ring}'\left({cos(\delta)\over \left({L \over D}\right)_{ring}} +sin(\delta)\right) \]
 \[ P_{ring} = D_{ring} \omega r \]
+<p>Turns out, this algorithm as it is does not work in that the Figure of Merit can exceed 1. Here I make a modification to the swirl velocity following [2], and doing away with the prior definition where the swirl velocity is determined immediately from input parameters. Assuming zero swirl before air enters the rotor: </p>
+\[ Swirl Power = Blade Power \]
+\[\dot{m}_{ring} c_{2\theta} r = P_{ring}\]
+\[\rho c_1 A_{ring} c_{2\theta} r = P_{ring} \]
+\[\rho c_1 A_{ring} c_{2\theta} = D_{ring} \omega \]
+\[ c_1 = tan(\delta) \omega r  \]
+\[\rho \ tan(\delta) r A_{ring} c_{2\theta} = D_{ring} = { T_{ring} \over {-sin(\delta)\over \left({L \over D}\right)_{ring}} +cos(\delta)} \left({cos(\delta)\over \left({L \over D}\right)_{ring}} +sin(\delta)\right)\]
+\[ c_{2\theta} = {D_{ring} \over { \rho \ tan(\delta) r A_{ring}  }} \]
+
+<p>The new relation for \(c_{2\theta}\) can be substituted into the deflection equation, and then \(\delta\) can be iteratively solved for as before. With the \(D_{ring}\) used at the solved \(\delta\), the power can be computed.</p>
+
+
 
 <h2>References</h2>
-[1] Akturk A, Camci C. Experimental and Computational Assessment of a Ducted-Fan Rotor Flow Model. Journal Of Aircraft [serial online]. May 2012;49(3):885-897. Available from: Science and Technology Collection, Ipswich, MA. Accessed March 19, 2015.
+<p>[1] Akturk A, Camci C. Experimental and Computational Assessment of a Ducted-Fan Rotor Flow Model. Journal Of Aircraft [serial online]. May 2012;49(3):885-897. Available from: Science and Technology Collection, Ipswich, MA. Accessed March 19, 2015.</p>
+<p>[2] 12.3 The Euler Turbine Equation. (n.d.). Retrieved April 25, 2015, from http://web.mit.edu/16.unified/www/FALL/thermodynamics/notes/node91.html</p>
 </div>
 <!--Let's look at the data for NACA0012 found on the NASA Turbulence Modeling Resource website: http://turbmodels.larc.nasa.gov/naca0012_val.html.-->
